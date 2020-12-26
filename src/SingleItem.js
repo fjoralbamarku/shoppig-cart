@@ -2,8 +2,12 @@ import React from "react";
 import { useGlobalContext } from "./context";
 
 const SingleItem = ({ img, title, price, id, amount }) => {
-  const { removeItem } = useGlobalContext();
-  const { increaseItem, decreaseItem, amounts } = useGlobalContext();
+  const {
+    increaseItem,
+    removeItem,
+    decreaseItem,
+    amounts,
+  } = useGlobalContext();
 
   return (
     <div className="productDiv">
@@ -19,7 +23,7 @@ const SingleItem = ({ img, title, price, id, amount }) => {
         id="amount"
         name="amount"
         min="0"
-        placeholder={amounts[id - 1]}
+        placeholder={amount}
         disabled="disabled"
       ></input>
 

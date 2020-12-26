@@ -8,17 +8,18 @@
 .productsDiv {
   position: fixed;
   left: 30%;
+  top: 0px;
 }
 .productDiv {
   border-style: solid;
-  border-color: rgb(207, 213, 240);
-  border-width: 10px;
+  border-color: rgb(66, 107, 122);
+  border-width: 5px;
   width: 500px;
   height: 100px;
-  background-color: rgb(163, 168, 168);
+  background-color: rgb(198, 200, 201);
 }
 .title {
-  font-size: 12px;
+  font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(58, 97, 122);
   position: relative;
@@ -36,11 +37,12 @@
 .removeBtn {
   border: none;
   color: rgb(214, 25, 63);
-  background-color: rgb(219, 194, 200);
+  background-color: rgb(230, 193, 202);
   position: relative;
   left: 60px;
-  bottom: 80px;
+  bottom: 88px;
   border-radius: 10%;
+  font-weight: bold;
 }
 .inputPosition {
   position: relative;
@@ -74,4 +76,48 @@ input::-webkit-inner-spin-button {
   transform: rotate(180deg);
   left: 351px;
   bottom: 85px;
+}
+.bagIcon {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 20%;
+  position: relative;
+  left: 237px;
+}
+.totalPosition {
+  border-style: solid;
+  border-color: rgb(69, 79, 110);
+  border-radius: 50%;
+  color: rgb(179, 22, 22);
+  background-color: rgb(215, 215, 216);
+  position: relative;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  left: 269px;
+  bottom: 69px;
+}
+.totalPrice {
+  word-spacing: 350px;
+  color: white;
+  border-bottom: 3px solid rgb(128, 123, 123);
+}
+
+body {
+  background-color: rgb(29, 38, 44);
+}
+
+.clearBtn {
+  background-color: rgb(50, 77, 77);
+  color: white;
+  height: 40px;
+  position: relative;
+  left: 220px;
+  border-radius: 20%;
+  border-color: rgb(116, 163, 163);
+  border-style: solid;
+}
+.clearBtn:hover {
+  background-color: rgb(66, 112, 112);
 }

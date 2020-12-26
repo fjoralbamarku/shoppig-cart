@@ -1,58 +1,45 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import { data } from "./data";
+import { reducer } from "./reducer";
 const AppContext = React.createContext();
-const AppProvider = ({ children }) => {
-  const [items, setItems] = useState(data);
+const defaultState = { items: data, loading: false, amount: 0, total: 0 };
 
-  const [amounts, setAmounts] = useState(
-    items.map((item) => {
-      return item.amount;
-    })
-  );
-  const [bag, setBag] = useState(amounts.reduce((a, b) => a + b));
-  console.log("amountettt", amounts);
+const AppProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
   const increaseItem = (id) => {
-    const temp = amounts;
-    temp[id - 1] = temp[id - 1] + 1;
+    dispatch({ type: "INCREASE", payload: id });
+  };
 
-    setAmounts(temp);
-    setBag(amounts.reduce((a, b) => a + b));
-
-    console.log("inkriz", id, temp, "aounti", amounts);
+  const findTotal = () => {
+    dispatch({ type: "GET_TOTAL" });
   };
 
   const decreaseItem = (id) => {
-    const temp = amounts;
-    if (temp[id - 1] === 1) {
-      removeItem(id);
-    } else {
-      temp[id - 1] = temp[id - 1] - 1;
-
-      setAmounts(temp);
-      setBag(amounts.reduce((a, b) => a + b));
-
-      console.log("inkriz", id, temp, "aounti", amounts);
-    }
+    dispatch({ type: "DECREASE", payload: id });
   };
 
   const removeItem = (id) => {
-    setItems((items) => {
-      return items.filter((item) => item.id !== id);
-    });
-    console.log("diiii", id);
+    dispatch({ type: "REMOVE_ITEM", payload: id });
   };
+  const clear_all = () => {
+    dispatch({ type: "CLEAR_ALL" });
+  };
+  useEffect(() => {
+    dispatch({ type: "GET_TOTAL" });
+  }, [state.items]);
   return (
     <div>
       <AppContext.Provider
         value={{
-          items,
+          ...state,
           removeItem,
           increaseItem,
-          amounts,
-          bag,
-          setBag,
+
           decreaseItem,
+
+          findTotal,
+          clear_all,
         }}
       >
         {children}
